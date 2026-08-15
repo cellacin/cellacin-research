@@ -1,0 +1,18 @@
+{
+    "fullroom": "/FULLROOM/",
+    "fullroomHeader": {"name": "FULLROOM_HEADER", "alt": "cellasin research"},
+    "fullroomFooter": {"name": "FULLROOM_FOOTER", "alt": "click on the pc to continue"},
+    "desktop": "/DESKTOP/",
+    "apps": "/APPS/",
+    "appData": [
+        {"name": "NEWSPAPER_ICON", "alt": "newspaper icon", "href": "/newspaper/"},
+        {"name": "PESTILENCEDAY_ICON", "alt": "pestilence day icon", "href": "/pestilence-day/"}
+    ],
+    "fileData": [
+        {"name": "LIGHTSOFF_01", "alt": "lights off background"},
+        {"name": "LIGHTSON_01", "alt": "lights on background 1"},
+        {"name": "LIGHTSON_02", "alt": "lights on background 2"},
+        {"name": "LIGHTSON_03", "alt": "lights on background 3"},
+        {"name": "LIGHTSON_04", "alt": "lights on background 4"}
+    ]
+}
