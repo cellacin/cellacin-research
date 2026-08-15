@@ -2,7 +2,17 @@
 import { getRelMousePointToImage } from "@/common/screenspace";
 import GameEvent from "@/common/storage";
 import { JSX, RefObject, useEffect, useRef, useState } from "react";
-import { ENABLE_PC_AREA, DISABLE_PC_AREA, DESKTOP, FULLROOM, FULLROOM_FOOTER, FULLROOM_HEADER, randomImageIdx, Background, AppOverlay } from "./background";
+import { 
+    ENABLE_PC_AREA, 
+    DISABLE_PC_AREA, 
+    DESKTOP, 
+    FULLROOM, 
+    FULLROOM_FOOTER, 
+    FULLROOM_HEADER, 
+    randomImageIdx, 
+    Background, 
+    AppOverlay 
+} from "./background";
 
 const PcOffState = "PcOffState";
 
@@ -48,6 +58,25 @@ export default function Page(): JSX.Element {
     const initialStateResolved = useRef(false);
     const fullroomRef = useRef<HTMLImageElement>(null);
     const desktopRef = useRef<HTMLImageElement>(null);
+
+    const audioRef = useRef<HTMLAudioElement>(null);
+
+    useEffect(() => {
+        const startAudio = () => {
+            const audio = audioRef.current;
+            if (!audio) return;
+
+            audio.play().catch(console.error);
+            
+            window.removeEventListener("click", startAudio);
+        };
+
+        window.addEventListener("click", startAudio);
+
+        return () => {
+            window.removeEventListener("click", startAudio);
+        };
+    }, []);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -184,14 +213,16 @@ export default function Page(): JSX.Element {
                             onClick={event => imgClick(event, desktopRef)}
                             opacity={opacity}
                         />
-                        <AppOverlay 
+                        {zoom === zoomMax && <AppOverlay 
                             imgRef={desktopRef}
-                        />
+                        />}
                     </div>
 
                 </>
             )}
-            <audio loop />
+            <audio ref={audioRef} loop={true}>
+                <source src="/AUDIO/CELLACINWEBSITE_IDLE.mp3" type="audio/mpeg" />
+            </audio>
         </div>
     );
 }

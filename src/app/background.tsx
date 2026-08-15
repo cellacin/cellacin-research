@@ -91,7 +91,9 @@ export function AppOverlay(props: {
                 <img 
                     src={`${background.apps}${fileData.name}.${IMAGE_FORMAT}`}
                     alt={fileData.alt}
-                    style={{width}}
+                    style={{
+                        width: isFinite(width) ? width : 0
+                    }}
                 />
             </a>
         );
